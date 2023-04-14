@@ -25,12 +25,11 @@ import { prisma } from "~/server/db";
  * @see https://trpc.io/docs/context
  */
 
-import { getAuth } from "@clerk/nextjs/server";
 export const createTRPCContext = (opts: CreateNextContextOptions) => {
   const { req } = opts;
   const sesh = getAuth(req);
 
-  const userId = sesh.user;
+  const userId = sesh.userId;
 
   return {
     prisma,
@@ -47,6 +46,7 @@ export const createTRPCContext = (opts: CreateNextContextOptions) => {
  */
 import { initTRPC, TRPCError } from "@trpc/server";
 import superjson from "superjson";
+import { getAuth } from "@clerk/nextjs/server";
 import { ZodError } from "zod";
 
 const t = initTRPC.context<typeof createTRPCContext>().create({
