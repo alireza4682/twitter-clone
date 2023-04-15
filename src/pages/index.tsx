@@ -1,18 +1,20 @@
 import { SignInButton, useUser } from "@clerk/nextjs";
 import { type NextPage } from "next";
-import Head from "next/head";
 
-import type { RouterOutputs } from "~/utils/api";
 import { api } from "~/utils/api";
 
-import dayjs from "dayjs";
 import Image from "next/image";
-import { LoadingPage, LoadingSpinner } from "~/components/loading.component";
 import { useState } from "react";
 import toast from "react-hot-toast";
-import Link from "next/link";
 import { PageLayout } from "~/components/layout.component";
+import { LoadingPage, LoadingSpinner } from "~/components/loading.component";
 import { PostView } from "~/components/postview.component";
+
+//TODO add pagination instead of take 100
+//TODO make clicking post better
+//TODO add react hook form
+//TODO sync prisma data with clerk to make it relational with web hooks
+//add og image from vercel
 
 const CreatePostWizard = () => {
   const { user } = useUser();
